@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+alias foo1
+shopt expand_aliases
+shopt -s expand_aliases
+shopt expand_aliases
+foo1

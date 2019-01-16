@@ -1,0 +1,60 @@
+name:                rio-example
+version:             0.1.0.0
+github:              steshaw/rio-example
+license:             BSD3
+author:              Steven Shaw
+maintainer:          steven@steshaw.org
+copyright:           (c) 2018, Steven Shaw
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on Github at <https://github.com/steshaw/rio-example#readme>
+
+dependencies:
+- base >= 4.10 && < 10
+- rio >= 0.1.1.0
+
+ghc-options:
+- -Wall
+- -Wcompat
+- -Wincomplete-record-updates
+- -Wincomplete-uni-patterns
+- -Wredundant-constraints
+
+library:
+  source-dirs: src
+
+executables:
+  rio-example-exe:
+    main:                Main.hs
+    source-dirs:         app
+    dependencies:
+    - rio-example
+    - optparse-simple
+
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+
+tests:
+  rio-example-test:
+    main:                Spec.hs
+    source-dirs:         test
+    dependencies:
+    - rio-example
+    - hspec
+
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N

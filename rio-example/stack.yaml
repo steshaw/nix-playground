@@ -1,0 +1,9 @@
+resolver: lts-13.3
+
+packages:
+- .
+
+nix:
+  enable: false
+  pure: true
+  shell-file: shell.nix

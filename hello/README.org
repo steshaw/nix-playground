@@ -1,0 +1,4 @@
+HT
+
+- [[https://www.reddit.com/r/NixOS/comments/8tkllx/standard_project_structure/]]
+- [[https://github.com/Gabriel439/haskell-nix/tree/master/project0#pinning-nixpkgs]]

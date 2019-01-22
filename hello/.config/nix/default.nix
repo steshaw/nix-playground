@@ -1,23 +1,13 @@
+with builtins;
 let
-  bootstrap = import <nixpkgs> {};
+  importJSON = path: fromJSON (readFile path);
 
-  inherit (
-    bootstrap.lib.importJSON ./nixpkgs.json
-  ) rev sha256;
+  inherit ( importJSON ./nixpkgs.json ) rev sha256;
 
-  nixpkgs1 = bootstrap.fetchFromGitHub {
-    owner = "NixOS";
-    repo  = "nixpkgs";
-    inherit rev sha256;
-  };
-
-  nixpkgs2 = builtins.fetchTarball {
+  nixpkgs = fetchTarball {
     url = "https://github.com/NixOS/nixpkgs/archive/${rev}.tar.gz";
     inherit sha256;
   };
-
-  useFetchTarball = true;
-  nixpkgs = if useFetchTarball then nixpkgs2 else nixpkgs1;
 
   pkgs = import nixpkgs {
     config = {};
@@ -26,6 +16,6 @@ let
     ];
   };
 
-  foo = builtins.trace "evaluating foo" "foo";
+  foo = trace "evaluating foo" "foo";
 
-in builtins.trace "nixpkgs = ${nixpkgs}" pkgs.my-foobar
+in trace "nixpkgs = ${nixpkgs}" pkgs.my-foobar

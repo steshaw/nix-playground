@@ -4,7 +4,11 @@ let
 
   inherit ( importJSON ./nixpkgs.json ) rev sha256;
 
+  # From `nix eval nixpkgs.lib.version`.
+  nixPkgsVersion = "19.03pre166683.088cb13aee0";
+
   nixpkgs = fetchTarball {
+    name = "my-nixpkgs-" + nixPkgsVersion;
     url = "https://github.com/NixOS/nixpkgs/archive/${rev}.tar.gz";
     inherit sha256;
   };

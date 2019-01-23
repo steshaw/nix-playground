@@ -1,15 +1,12 @@
 with builtins;
 let
   # From `nix eval nixpkgs.lib.version`.
-  nixPkgsVersion = "19.03pre167171.5476f592c56";
-
-  rev = "5476f592c56";
-  sha256 = "sha256:0gx5gw82f9j20q8y3wq1bgfdl56859zhmw0zl2cc361l6yyyz0jp";
+  nixpkgsVersion = "19.03pre167188.4b6020faf58";
 
   nixpkgs = fetchTarball {
-    name = "my-nixpkgs-" + nixPkgsVersion;
-    url = "https://github.com/NixOS/nixpkgs/archive/${rev}.tar.gz";
-    inherit sha256;
+    name = "my-nixpkgs-" + nixpkgsVersion;
+    url = "https://releases.nixos.org/nixpkgs/nixpkgs-${nixpkgsVersion}/nixexprs.tar.xz";
+    sha256 = "sha256:1m2aihxlkbjzbkz93dqcazkhzfwla1ry4yxk6yggw4nabv10bnc6";
   };
 
   pkgs = import nixpkgs {
@@ -18,7 +15,5 @@ let
       (import ./overlay.nix)
     ];
   };
-
-  foo = trace "evaluating foo" "foo";
 
 in trace "nixpkgs = ${nixpkgs}" pkgs.my-foobar

@@ -1,12 +1,13 @@
 with (import <nixpkgs> {});
 let node = nodejs-11_x;
+    enableApplyRefact = false; # TODO: Broken in nixpkgs 😞
+    enableBrittany = false; # TODO: Broken in nixpkgs 😞
+    opt = stdenv.lib.optional;
 in mkShell {
   name = "env";
   buildInputs = [
     docker
     emacs
-#    haskellPackages.apply-refact # TODO: Broken in nixpkgs 😞
-#    haskellPackages.brittany # TODO: Broken in nixpkgs 😞
     haskellPackages.hasktags
     haskellPackages.hindent
     haskellPackages.hlint
@@ -24,10 +25,10 @@ in mkShell {
     vim
     (yarn.override { nodejs = node; })
     zlib
-#
-# sudo apt-get -qqy install libtinfo-dev
-#
-  ];
+  ]
+  ++ opt enableApplyRefact haskellPackages.apply-refact
+  ++ opt enableBrittany haskellPackages.brittany
+  ;
   shellHook = ''
     #
     # Do not output to stdout here as it gives direnv woes.

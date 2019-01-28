@@ -1,0 +1,3 @@
+#!/bin/sh
+
+nix-instantiate --eval ./use-test.nix

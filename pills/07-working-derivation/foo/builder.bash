@@ -18,4 +18,4 @@ echo 'Executing ps {'
 /bin/ps || echo ps failed # impure
 echo '}'
 
-echo hello >$out
+echo foo >$out

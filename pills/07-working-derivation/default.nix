@@ -1,13 +1,13 @@
-#with import <nixpkgs> {};
+with import <nixpkgs> {};
 /*
 stdenv.mkDerivation {
 */
 derivation {
   name = "foo-bar";
-  builder = ./builder.sh;
+  builder = "${bash}/bin/bash";
   system = builtins.currentSystem;
-  args = [ "a" "b" "c" 1 2 3 ];
-  bust = 4;
+  args = [ ./builder.sh ];
+  bust = 5;
 #  ps = "${coreutils}/bin/ps";
 #  buildInputs = [ coreutils ];
 }

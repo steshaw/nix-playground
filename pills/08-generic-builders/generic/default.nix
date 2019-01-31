@@ -1,14 +1,11 @@
 with import <nixpkgs> {};
-let cc = clang; # gcc
-in derivation {
+derivation {
   name = "hello";
   builder = "${bash_5}/bin/bash";
   args = [ ./builder.bash ];
 
-  inherit cc llvm;
-  binutils = binutils-unwrapped;
   buildInputs = [
-    cc
+    clang
     coreutils
     gawk
     gnugrep
@@ -19,7 +16,7 @@ in derivation {
     llvm
   ];
 
-  AR= "llvm-ar";
+  AR = "llvm-ar";
   RANLIB = "llvm-ranlib";
   CC = "clang";
 

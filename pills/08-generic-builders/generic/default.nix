@@ -18,7 +18,6 @@ derivation {
 
   AR = "llvm-ar";
   RANLIB = "llvm-ranlib";
-  CC = "clang";
 
   src = builtins.fetchurl http://ftp.gnu.org/gnu/hello/hello-2.10.tar.gz;
   system = builtins.currentSystem;

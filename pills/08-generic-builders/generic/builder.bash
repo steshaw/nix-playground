@@ -19,5 +19,5 @@ tar -xf "$src"
 cd "${name}"*
 
 ./configure --prefix="$out"
-make AR="${AR}" CC="${CC}" RANLIB="${RANLIB}"
+make AR="${AR}" RANLIB="${RANLIB}"
 make install

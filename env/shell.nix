@@ -1,5 +1,5 @@
 with (import <nixpkgs> {});
-let node = nodejs-11_x;
+let node = nodejs-10_x;
     enableApplyRefact = false; # TODO: Broken in nixpkgs 😞
     enableBrittany = false; # TODO: Broken in nixpkgs 😞
     opt = stdenv.lib.optional;

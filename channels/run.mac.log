@@ -1,0 +1,82 @@
+-----------------------------------
+channel = aardvark
+-----------------------------------
+error: attribute 'hello' in selection path 'aardvark.hello' not found
+-----------------------------------
+
+-----------------------------------
+channel = baboon
+-----------------------------------
+error: attribute 'hello' in selection path 'baboon.hello' not found
+-----------------------------------
+
+-----------------------------------
+channel = caterpillar
+-----------------------------------
+error: attribute 'hello' in selection path 'caterpillar.hello' not found
+-----------------------------------
+
+-----------------------------------
+channel = dingo
+-----------------------------------
+builder for '/nix/store/1cyagihl211vsis9bz09cqaz3h2yyc23-libxml2-2.9.3.drv' failed with exit code 77; last 10 log lines:
+  checking for awk... awk
+  checking whether make sets $(MAKE)... yes
+  checking whether make supports nested variables... yes
+  checking whether make supports nested variables... (cached) yes
+  checking for gcc... gcc
+  checking whether the C compiler works... no
+  configure: error: in `/private/var/folders/5p/pg4tt29543q9myxxt9j1528m0000gn/T/nix-build-libxml2-2.9.3.drv-0/libxml2-2.9.3':
+  configure: error: C compiler cannot create executables
+  See `config.log' for more details
+  
+cannot build derivation '/nix/store/jd4y5aps1z61jqbhsz1gy408zwwa49w4-clang-3.6.2.drv': 1 dependencies couldn't be built
+cannot build derivation '/nix/store/n4q29z97dc1p9mqrn2ydhlfmsqwbgx0j-libarchive-3.1.2.drv': 1 dependencies couldn't be built
+cannot build derivation '/nix/store/vh2bh7gaw2m0rgxscf3mhm1d3rz3xwfg-clang-wrapper-3.6.2.drv': 1 dependencies couldn't be built
+cannot build derivation '/nix/store/zg90kfmf99h03z0fl03gw3gh105mb02c-cmake-3.3.1.drv': 1 dependencies couldn't be built
+cannot build derivation '/nix/store/45ndaky3079nd78042384f8hbidq7f7q-libc++abi-3.6.2.drv': 1 dependencies couldn't be built
+cannot build derivation '/nix/store/mmyz6rrddfahwl23i9d9vjh7wa8irp5k-stdenv-darwin-boot-3.drv': 1 dependencies couldn't be built
+cannot build derivation '/nix/store/lqjabx84kndk75y8m0lq7zh5190k6zzz-hello-2.10.drv': 1 dependencies couldn't be built
+error: build of '/nix/store/lqjabx84kndk75y8m0lq7zh5190k6zzz-hello-2.10.drv' failed
+-----------------------------------
+
+-----------------------------------
+channel = emu
+-----------------------------------
+builder for '/nix/store/s41jnb4kmxxbwj40c5l88k9ma0mwfy0b-hello-2.10.drv' failed due to signal 6 (Abort trap: 6); last 3 log lines:
+  dyld: Library not loaded: /usr/lib/system/libsystem_network.dylib
+    Referenced from: /nix/store/3iidpvlcpwk3c08yxl4mxxw8ik78nis7-Libsystem-osx-10.9.5/lib/libSystem.dylib
+    Reason: image not found
+error: build of '/nix/store/s41jnb4kmxxbwj40c5l88k9ma0mwfy0b-hello-2.10.drv' failed
+-----------------------------------
+
+-----------------------------------
+channel = flounder
+-----------------------------------
+Hello, world!
+-----------------------------------
+
+-----------------------------------
+channel = gorilla
+-----------------------------------
+dyld: Library not loaded: /usr/lib/system/libsystem_coretls.dylib
+  Referenced from: /nix/store/v7i520r9c2p8z6vk26n53hfrxgqn8cl9-Libsystem-osx-10.11.6/lib/libSystem.B.dylib
+  Reason: image not found
+./run: line 19: 21525 Abort trap: 6           nix run -f channels.nix "${channel}.hello" -c hello
+-----------------------------------
+
+-----------------------------------
+channel = hummingbird
+-----------------------------------
+dyld: Library not loaded: /usr/lib/system/libsystem_network.dylib
+  Referenced from: /nix/store/v2sbh9m4p8fa5czsw0cr1kcz8a9xx23d-Libsystem-osx-10.11.6/lib/libSystem.B.dylib
+  Reason: image not found
+./run: line 19: 21526 Abort trap: 6           nix run -f channels.nix "${channel}.hello" -c hello
+-----------------------------------
+
+-----------------------------------
+channel = impala
+-----------------------------------
+Hello, world!
+-----------------------------------
+

@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+kind=${1:-new} # "old" or "new"
+
+channels=(
+  aardvark
+  baboon
+  caterpillar
+  dingo
+  emu
+  flounder
+  gorilla
+  hummingbird
+  impala
+)
+
+function run {
+  channel=$1
+  set +e
+  if [[ $kind == old ]]; then
+    # shellcheck disable=SC2046
+    $(nix-build --no-out-link --expr "(import ./channels.nix).${channel}.hello")/bin/hello
+  else
+    nix run -f channels.nix "${channel}.hello" -c hello
+  fi
+  set -e
+}
+
+for channel in "${channels[@]}"; do
+  echo -----------------------------------
+  echo "channel = ${channel}"
+  echo -----------------------------------
+  run "${channel}"
+  echo -----------------------------------
+  echo
+done

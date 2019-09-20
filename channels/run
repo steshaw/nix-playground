@@ -2,7 +2,8 @@
 
 set -euo pipefail
 
-kind=${1:-new} # "old" or "new"
+pkg=$1; shift
+command=("${@}")
 
 channels=(
   aardvark
@@ -14,18 +15,12 @@ channels=(
   gorilla
   hummingbird
   impala
+  koi
 )
 
 function run {
   channel=$1
-  set +e
-  if [[ $kind == old ]]; then
-    # shellcheck disable=SC2046
-    $(nix-build --no-out-link --expr "(import ./channels.nix).${channel}.hello")/bin/hello
-  else
-    nix run -f channels.nix "${channel}.hello" -c hello
-  fi
-  set -e
+  nix run -f channels.nix "${channel}.${pkg}" -c "${command[@]}" || true
 }
 
 for channel in "${channels[@]}"; do

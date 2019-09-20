@@ -18,6 +18,7 @@ let
     gorilla = "17.03";
     hummingbird = "17.09";
     impala = "18.03";
+    koi = "19.03";
   };
 in mapAttrs (v:
   import (builtins.fetchTarball

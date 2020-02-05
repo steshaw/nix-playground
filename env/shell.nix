@@ -12,7 +12,7 @@ in mkShell {
     haskellPackages.hindent
     haskellPackages.hlint
     haskellPackages.hoogle
-    haskellPackages.stylish-haskell
+#    haskellPackages.stylish-haskell
     node
     openssl
     overmind

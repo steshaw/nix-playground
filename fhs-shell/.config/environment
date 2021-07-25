@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+PATH=$PWD/scripts:$PATH
+
+export NIX_CONFIG_HOME=$CONFIG_HOME/nix

@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+fhs="${CONFIG_HOME}/nix/fhs.nix"
+
+shell_type="--impure"
+if [[ ${1:-} == '--pure' ]]; then
+  shell_type="--pure"; shift
+elif [[ ${1:-} == '--impure' ]]; then
+  shell_type="--impure"; shift
+fi
+
+if [[ $# -eq 0 ]]; then
+  nix-shell ${shell_type} "${fhs}"
+else
+  nix-shell ${shell_type} --argstr run "$*" "${fhs}"
+fi

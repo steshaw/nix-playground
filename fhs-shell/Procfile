@@ -1,0 +1,4 @@
+files: scripts/serve
+
+hello: cd hello-web && stack run
+hello-build: cd hello-web && stack build --fast --file-watch --exec 'overmind restart -socket ../.overmind.sock hello'

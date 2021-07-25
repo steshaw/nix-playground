@@ -1,0 +1,1 @@
+nvim $CONFIG_HOME/nix/shell.nix

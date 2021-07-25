@@ -1,0 +1,8 @@
+*.hi
+*.o
+*.swp
+.DS_Store
+/.cabal-sandbox
+/.stack-work/
+/cabal.sandbox.config
+/dist-newstyle

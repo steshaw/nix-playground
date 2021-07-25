@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+base_dir=$(dirname "$0")
+
+pkgs=(
+  turtle
+)
+
+nix="
+  haskellPackages.ghcWithPackages (pkgs:
+    with pkgs; [ ${pkgs[*]} ]
+  )
+"
+
+exec nix-shell \
+  -p "${nix}" \
+  --command "runhaskell ${base_dir}/hello-turtles.hs"

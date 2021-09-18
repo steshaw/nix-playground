@@ -1,0 +1,1 @@
+nix profile install github:nixos/nixpkgs/release-21.05#hello

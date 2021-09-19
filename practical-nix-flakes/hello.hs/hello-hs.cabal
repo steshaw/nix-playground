@@ -3,7 +3,7 @@ cabal-version: 3.4
 name: hello-hs
 version: 0.1.0.0
 license: MIT
-license-file: LICENSE
+license-file: LICENCE
 author:
   Steven Shaw <steven@steshaw.org>
 maintainer:
@@ -12,5 +12,7 @@ maintainer:
 executable hello-hs
   main-is: Main.hs
   build-depends: base ^>=4.15.0.0
+  build-depends: shellmet ^>= 0.0.4.0
+  build-depends: text ^>= 1.2.4.1
   hs-source-dirs: app
   default-language: Haskell2010

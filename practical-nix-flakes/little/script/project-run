@@ -1,1 +1,5 @@
-nix develop -c sh -c "hello | cowsay"
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+nix develop --command sh -c "hello | cowsay"

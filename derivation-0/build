@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo "TMPDIR=$TMPDIR"
+# shellcheck disable=SC2154
+echo "First" >"$out"

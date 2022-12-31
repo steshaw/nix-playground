@@ -1,0 +1,15 @@
+#!/bin/sh
+
+set -e
+set -u
+
+echo "PWD = $PWD"
+echo "pwd = $(pwd)"
+if which env && which sort; then
+  echo "env {"
+  env | sort | sed 's/^/  /'
+  echo "}"
+fi
+echo Generating "Hi!"
+# shellcheck disable=SC2154
+echo "Hi!" >"$out"

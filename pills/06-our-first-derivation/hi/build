@@ -5,6 +5,8 @@ set -u
 
 echo "PWD = $PWD"
 echo "pwd = $(pwd)"
+# shellcheck disable=SC2154
+echo "builder = $builder"
 if which env && which sort; then
   echo "env {"
   env | sort | sed 's/^/  /'

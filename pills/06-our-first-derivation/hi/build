@@ -7,11 +7,23 @@ echo "PWD = $PWD"
 echo "pwd = $(pwd)"
 # shellcheck disable=SC2154
 echo "builder = $builder"
-if which env && which sort; then
+echo "v1 = [[$v1]]"
+echo "v2 = [[$v2]]"
+echo "v3 = [[$v3]]"
+echo "v4 = [[$v4]]"
+echo "v5 = [[$v5]]"
+echo "v6 = [[$v6]]"
+echo "v7 = [[$v7]]"
+echo "v8 = [[$v8]]"
+
+# if not in a sandbox:
+if [ -x /usr/bin/env ]; then
   echo "env {"
-  env | sort | sed 's/^/  /'
+  /usr/bin/env | /usr/bin/sort | /usr/bin/sed 's/^/  /'
   echo "}"
 fi
+
 echo Generating "Hi!"
 # shellcheck disable=SC2154
 echo "Hi!" >"$out"
+

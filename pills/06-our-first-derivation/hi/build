@@ -3,18 +3,29 @@
 set -e
 set -u
 
+# shellcheck disable=SC2154
+NIX_OUT=$out
+# shellcheck disable=SC2154
+NIX_BUILDER=$builder
+
+echo "args = $*"
+
+# shellcheck disable=SC2154
+for arg in "$@"; do
+  echo "arg = [[$arg]]"
+done
+
 echo "PWD = $PWD"
 echo "pwd = $(pwd)"
-# shellcheck disable=SC2154
-echo "builder = $builder"
-echo "v1 = [[$v1]]"
-echo "v2 = [[$v2]]"
-echo "v3 = [[$v3]]"
-echo "v4 = [[$v4]]"
-echo "v5 = [[$v5]]"
-echo "v6 = [[$v6]]"
-echo "v7 = [[$v7]]"
-echo "v8 = [[$v8]]"
+echo "builder = $NIX_BUILDER"
+echo "v1 = [[$V1]]"
+echo "v2 = [[$V2]]"
+echo "v3 = [[$V3]]"
+echo "v4 = [[$V4]]"
+echo "v5 = [[$V5]]"
+echo "v6 = [[$V6]]"
+echo "v7 = [[$V7]]"
+echo "v8 = [[$V8]]"
 
 # if not in a sandbox:
 if [ -x /usr/bin/env ]; then
@@ -24,6 +35,4 @@ if [ -x /usr/bin/env ]; then
 fi
 
 echo Generating "Hi!"
-# shellcheck disable=SC2154
-echo "Hi!" >"$out"
-
+echo "Hi!" >"$NIX_OUT"

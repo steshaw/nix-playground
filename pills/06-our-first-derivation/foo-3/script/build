@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+set -euo pipefail
 
 # WARNING: Many impurities used such as /usr/bin/* and /bin/*.
 
@@ -16,26 +18,26 @@ echo '}'
 echo
 echo 'Env vars from derivation {'
 # shellcheck disable=SC2154
-echo "  builder=${builder}"
-# shellcheck disable=SC2154
-echo "  bust=${bust}"
-# shellcheck disable=SC2154
 echo "  name=${name}"
 # shellcheck disable=SC2154
-echo "  out=${out}"
+echo "  builder=${builder}"
 # shellcheck disable=SC2154
 echo "  system=${system}"
+# shellcheck disable=SC2154
+echo "  out=${out}"
 echo '}'
 
 echo
 echo 'Environment: {'
-/usr/bin/env | /usr/bin/sort | /usr/bin/sed -e 's/^/  /'
+env | sort | sed -e 's/^/  /'
 echo '}'
 
-/bin/mkdir -p "${out}/bin"
-/bin/cat >"${out}/bin/foo-bar" <<!
+d="${out}/bin"
+mkdir -p "${d}"
+foo="${d}/foo"
+cat >"${foo}" <<!
 #!/bin/sh
 
 echo Hello
 !
-/bin/chmod +x "${out}/bin/foo-bar"
+chmod +x "${foo}"

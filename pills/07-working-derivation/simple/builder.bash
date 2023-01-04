@@ -4,7 +4,7 @@ set -euo pipefail
 
 declare -xp
 # shellcheck disable=SC2154
-export PATH="$coreutils/bin:$gcc/bin"
+export PATH="$coreutils/bin:$gcc/bin${PATH:+:${PATH}}"
 # shellcheck disable=SC2154
 mkdir -p "$out/bin"
 # shellcheck disable=SC2154

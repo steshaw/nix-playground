@@ -1,10 +1,12 @@
 with import <nixpkgs> {};
 derivation {
   name = "hello";
-  builder = "${bash_5}/bin/bash";
+  builder = "${bash}/bin/bash";
   args = [ ./builder.bash ];
+  system = builtins.currentSystem;
 
-  buildInputs = [
+  # Custom environment variables:
+  deps = [
     clang
     coreutils
     gawk
@@ -15,9 +17,6 @@ derivation {
     gzip
     llvm
   ];
-
-  AR = "llvm-ar";
-
+  #AR = "llvm-ar";
   src = builtins.fetchurl http://ftp.gnu.org/gnu/hello/hello-2.10.tar.gz;
-  system = builtins.currentSystem;
 }

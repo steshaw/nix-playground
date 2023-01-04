@@ -1,3 +1,7 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
 echo Arguments: "$@"
 
 echo
@@ -18,4 +22,6 @@ echo 'Executing ps {'
 /bin/ps || echo ps failed # impure
 echo '}'
 
-echo foo >$out
+# shellcheck disable=SC2154
+echo foo >"$out"
+

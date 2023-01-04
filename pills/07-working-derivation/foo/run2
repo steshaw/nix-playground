@@ -1,1 +1,0 @@
-nix-store -v --realise --add-root out --indirect $(nix-instantiate --add-root foo-bar.drv --indirect)

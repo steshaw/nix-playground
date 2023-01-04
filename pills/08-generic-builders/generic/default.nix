@@ -1,5 +1,8 @@
 with import <nixpkgs> {};
-let v = "2.12"; in
+let v = "2.12";
+    gcc = clang;
+    bintools = clang.bintools.bintools_bin;
+in
 derivation {
   name = "hello";
   builder = "${bash}/bin/bash";
@@ -11,11 +14,12 @@ derivation {
     gnutar
     gzip
     gnumake
-    gcc
     coreutils
     gawk
     gnused
     gnugrep
+    gcc
+    bintools
   ];
   src = builtins.fetchurl "http://ftp.gnu.org/gnu/hello/hello-${v}.tar.gz";
 }

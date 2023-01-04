@@ -17,6 +17,10 @@ echo '}'
 
 tar --strip-components=1 -xf "$src"
 
-./configure --prefix="$out"
-make
-make install
+if ./configure --prefix="$out"; then
+  make
+  make install
+else
+  cat config.log
+  false
+fi

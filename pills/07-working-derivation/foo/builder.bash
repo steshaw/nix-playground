@@ -12,14 +12,22 @@ echo '}'
 # See if we can find out what version of bash we're using
 echo
 echo 'Executing set {'
-# Looks impure because `BASH=/bin/bash`.
 set
 echo '}'
 
-# See if we can find out what version of bash we're using
 echo
 echo 'Explore Nix store {'
 find /nix/store -maxdepth 1
+echo '}'
+
+echo
+echo 'Explore parent directory {'
+ls ..
+echo '}'
+
+echo
+echo 'Explore / {'
+find / -maxdepth 3
 echo '}'
 
 echo

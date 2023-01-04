@@ -5,5 +5,5 @@ derivation {
   args = [ ./builder.bash ];
   system = builtins.currentSystem;
 
-  PATH = "${findutils}/bin";
+  PATH = "${findutils}/bin:${coreutils}/bin";
 }

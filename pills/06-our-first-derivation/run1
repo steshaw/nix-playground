@@ -1,1 +1,1 @@
-nix-build
+nix-build --no-sandbox

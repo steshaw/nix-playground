@@ -8,7 +8,7 @@ let
 
     baseInputs = [
       clang
-      #clang.bintools.bintools_bin
+      clang.bintools.bintools_bin
       coreutils
       gawk
       gnugrep

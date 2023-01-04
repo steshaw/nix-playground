@@ -16,6 +16,12 @@ echo 'Executing set {'
 set
 echo '}'
 
+# See if we can find out what version of bash we're using
+echo
+echo 'Explore Nix store {'
+find /nix/store -maxdepth 1
+echo '}'
+
 echo
 echo 'Executing ps {'
 # Hmmm, cannot run /bin/ps as permission is denied...
@@ -24,4 +30,3 @@ echo '}'
 
 # shellcheck disable=SC2154
 echo foo >"$out"
-

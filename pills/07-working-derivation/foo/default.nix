@@ -4,4 +4,6 @@ derivation {
   builder = "${bash}/bin/bash";
   args = [ ./builder.bash ];
   system = builtins.currentSystem;
+
+  PATH = "${findutils}/bin";
 }

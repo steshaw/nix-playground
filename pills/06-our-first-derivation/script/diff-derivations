@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+drv1=$(nix-store -q -d /nix/store/2w6011wwg5v6qxz182r4d0mmr3i4rxm1-coreutils-9.0)
+drv2=$(nix-store -q -d /nix/store/47n5hzqpahs7yv84ia6cxp3jg9ca8r86-coreutils-9.0)
+
+diff <(nix show-derivation "$drv1" | jq --sort-keys) <(nix show-derivation "$drv2" | jq --sort-keys)

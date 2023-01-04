@@ -1,6 +1,8 @@
+#!/usr/bin/env bash
+
 set -euo pipefail
 
-declare buildInputs name out src
+declare baseInputs buildInputs name out src
 
 declare -xp
 

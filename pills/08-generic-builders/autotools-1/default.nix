@@ -1,6 +1,4 @@
 with import <nixpkgs> {};
-let v = "2.12";
-in
 derivation {
   name = "hello";
   builder = "${bash}/bin/bash";
@@ -8,16 +6,16 @@ derivation {
   system = builtins.currentSystem;
 
   # Custom environment variables:
-  deps = [
+  buildInputs = [
     gnutar
     gzip
     gnumake
+    gcc
     coreutils
     gawk
     gnused
     gnugrep
-    clang
-    clang.bintools.bintools_bin
+    bintools.bintools
   ];
-  src = builtins.fetchurl "http://ftp.gnu.org/gnu/hello/hello-${v}.tar.gz";
+  src = builtins.fetchurl http://ftp.gnu.org/gnu/hello/hello-2.12.tar.gz;
 }

@@ -1,4 +1,5 @@
 with import <nixpkgs> {};
+let v = "2.12"; in
 derivation {
   name = "hello";
   builder = "${bash}/bin/bash";
@@ -7,16 +8,14 @@ derivation {
 
   # Custom environment variables:
   deps = [
-    clang
-    coreutils
-    gawk
-    gnugrep
-    gnumake
-    gnused
     gnutar
     gzip
-    llvm
+    gnumake
+    gcc
+    coreutils
+    gawk
+    gnused
+    gnugrep
   ];
-  #AR = "llvm-ar";
-  src = builtins.fetchurl http://ftp.gnu.org/gnu/hello/hello-2.10.tar.gz;
+  src = builtins.fetchurl "http://ftp.gnu.org/gnu/hello/hello-${v}.tar.gz";
 }

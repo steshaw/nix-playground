@@ -6,7 +6,6 @@ derivation {
   system = builtins.currentSystem;
 
   # Custom variables:
-  gcc = gcc;
-  coreutils = coreutils;
+  inherit gcc coreutils;
   src = ./simple.c;
 }

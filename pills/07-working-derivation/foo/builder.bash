@@ -38,3 +38,7 @@ echo '}'
 
 # shellcheck disable=SC2154
 echo foo >"$out"
+
+
+
+echo I was here

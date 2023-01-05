@@ -4,7 +4,7 @@ let
   defaultAttrs = {
     builder = "${bash}/bin/bash";
     args = [ ./builder.bash ];
-    system = builtins.currentSystem;
+    system = pkgs.system;
 
     # Custom environment variables.
     setup = ./setup.bash;

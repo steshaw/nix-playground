@@ -1,5 +1,5 @@
+{pkgs ? import <nixpkgs> {} }:
 let
-  pkgs = import <nixpkgs> { };
   autotoolsDerivation = import ./autotools.nix pkgs;
 in
 with pkgs; autotoolsDerivation {

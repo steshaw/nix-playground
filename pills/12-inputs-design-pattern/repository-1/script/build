@@ -1,2 +1,2 @@
 echo Building the default package which is all our packages
-nix build --impure
+nix build

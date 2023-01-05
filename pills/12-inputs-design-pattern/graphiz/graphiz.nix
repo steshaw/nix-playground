@@ -10,6 +10,8 @@ with pkgs; autotoolsDerivation {
     sha256 = "1gycwaq6lnz03pizfibipq1j15hb975xdb0qsaagkq4qvhyj16zp";
   };
   buildInputs = [
-    zlib.dev
+    pkg-config
+    gd
+    gd.dev
   ];
 }

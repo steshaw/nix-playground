@@ -5,7 +5,7 @@
   outputs = { self, nixpkgs, flake-utils }:
     flake-utils.lib.eachDefaultSystem (system:
       {
-        packages = (import ./default.nix)
+        packages = flake-utils.lib.flattenTree (import ./default.nix)
         #{ pkgs = nixpkgs.legacyPackages.${system}; }
         ;
       }

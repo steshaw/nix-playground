@@ -34,5 +34,12 @@ genericBuild() {
 
 unset PATH
 for p in $baseInputs $buildInputs; do
-  export PATH=$p/bin${PATH:+:${PATH}}
+  bin_dir=$p/bin
+  if [[ -d $bin_dir ]]; then
+    export PATH=$bin_dir${PATH:+:${PATH}}
+  fi
+  pkgconfig_dir=$p/lib/pkgconfig
+  if [[ -d $pkgconfig_dir ]]; then
+    export PKG_CONFIG_PATH=$pkgconfig_dir${PKG_CONFIG_PATH:+:${PKG_CONFIG_PATH}}
+  fi
 done

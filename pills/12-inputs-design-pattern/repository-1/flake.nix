@@ -6,7 +6,7 @@
     flake-utils.lib.eachDefaultSystem (system:
       {
         packages = (import ./default.nix)
-        #{ pkgs = nixpkgs.legacyPackages.${system}; }
+          #{ pkgs = nixpkgs.legacyPackages.${system}; }
         ;
       }
     );

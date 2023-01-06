@@ -1,7 +1,6 @@
-{pkgs ? import <nixpkgs> {} }:
-let
-  autotoolsDerivation = import ./autotools.nix pkgs;
-in
+{ pkgs ? import <nixpkgs> { }
+, autotoolsDerivation
+}:
 autotoolsDerivation {
   name = "hello";
   src = builtins.fetchurl {

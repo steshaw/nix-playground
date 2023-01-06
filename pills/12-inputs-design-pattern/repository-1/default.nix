@@ -12,7 +12,6 @@ with pkgs;
   }; in
   {
   hello = import ./hello {
-    inherit pkgs;
     inherit autotoolsDerivation;
   };
   graphviz = f-graphviz true;

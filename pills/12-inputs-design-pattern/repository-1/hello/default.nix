@@ -1,5 +1,5 @@
-{ pkgs ? import <nixpkgs> { }
-, autotoolsDerivation
+{ 
+  autotoolsDerivation
 }:
 autotoolsDerivation {
   name = "hello";

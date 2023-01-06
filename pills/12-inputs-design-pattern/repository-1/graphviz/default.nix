@@ -1,9 +1,8 @@
-{
-  autotoolsDerivation
-  , lib,
- gdSupport ? true,
- gd,
- pkg-config
+{ autotoolsDerivation
+, lib
+, gdSupport ? true
+, gd
+, pkg-config
 }:
 autotoolsDerivation {
   name = "graphviz";

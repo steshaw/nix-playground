@@ -3,13 +3,15 @@ let
   autotoolsDerivation = import ./autotools pkgs;
 in
 with pkgs;
-  let defaultGraphvizArgs = {
+let
+  defaultGraphvizArgs = {
     inherit autotoolsDerivation;
     inherit lib;
     inherit gd;
     inherit pkg-config;
-  }; in
-  {
+  };
+in
+{
   hello = import ./hello {
     inherit autotoolsDerivation;
   };

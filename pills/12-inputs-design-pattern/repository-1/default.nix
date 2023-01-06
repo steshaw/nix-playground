@@ -2,14 +2,19 @@
 let
   autotoolsDerivation = import ./autotools pkgs;
 in
-{
+with pkgs;
+  let f-graphviz=  gdSupport: import ./graphiz {
+    inherit autotoolsDerivation;
+    inherit lib;
+    inherit gd;
+    inherit pkg-config;
+    inherit gdSupport;
+  }; in
+  {
   hello = import ./hello {
     inherit pkgs;
     inherit autotoolsDerivation;
   };
-  graphiz = import ./graphiz {
-    inherit pkgs;
-    inherit autotoolsDerivation;
-    gdSupport = true;
-  };
+  graphviz = f-graphviz true;
+  graphvizCore = f-graphviz false;
 }

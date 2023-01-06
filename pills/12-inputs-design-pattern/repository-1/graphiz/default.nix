@@ -1,8 +1,11 @@
-{ pkgs ? import <nixpkgs> { }
-, gdSupport ? true
-, autotoolsDerivation
+{
+  autotoolsDerivation
+  , lib,
+ gdSupport ? true,
+ gd,
+ pkg-config
 }:
-with pkgs; autotoolsDerivation {
+autotoolsDerivation {
   name = "graphviz";
   src = builtins.fetchurl {
     url =
@@ -12,7 +15,7 @@ with pkgs; autotoolsDerivation {
   buildInputs =
     if gdSupport then [
       pkg-config
-      (pkgs.lib.getLib gd)
-      (pkgs.lib.getDev gd)
+      (lib.getLib gd)
+      (lib.getDev gd)
     ] else [ ];
 }

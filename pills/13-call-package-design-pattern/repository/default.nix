@@ -1,9 +1,9 @@
 { pkgs ? import <nixpkgs> { } }:
 let
-  callPackage = set: f: f (
+  callPackage = set: f: overrides: f (
     builtins.intersectAttrs
       (builtins.functionArgs f)
-      set
+      set // overrides
   );
   autotoolsDerivation = import ./autotools pkgs;
 in
@@ -15,8 +15,6 @@ let
     inherit gd;
     inherit pkg-config;
   };
-in
-{
   add = {a ? 3, b}: a + b;
   values = {
     a = 10;
@@ -24,7 +22,12 @@ in
     c = 42;
     d = 99;
   };
+in
+{
   inherit callPackage;
+  test1 = callPackage values add {};
+  test2 = callPackage values add { a = 0; };
+
   hello = import ./hello {
     inherit autotoolsDerivation;
   };

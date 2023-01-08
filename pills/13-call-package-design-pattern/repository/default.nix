@@ -1,6 +1,9 @@
 { nixpkgs ? import <nixpkgs> { } }:
 let
   autotoolsDerivation = import ./autotools nixpkgs;
+  ourPkgs = nixpkgs // {
+    inherit autotoolsDerivation;
+  };
   # callPackage : Set Path OverridesSet -> Set
   callPackage = set: pathToF: overrides:
     let f = import pathToF; in f
@@ -10,30 +13,14 @@ let
           set // overrides
       );
 in
-with nixpkgs;
-let
-  defaultGraphvizArgs = {
-    inherit autotoolsDerivation;
-    inherit lib;
-    inherit gd;
-    inherit pkg-config;
-  };
-in
-let pkgs = {
-  hello = import ./hello {
-    inherit autotoolsDerivation;
+{
+  hello = callPackage ourPkgs ./hello { };
+
+  graphviz = callPackage ourPkgs ./graphviz {
+    gdSupport = true;
   };
 
-  graphviz = callPackage defaultGraphvizArgs
-    ./graphviz
-    {
-      gdSupport = true;
-    };
-
-  graphvizCore = callPackage defaultGraphvizArgs
-    ./graphviz
-    {
-      gdSupport = false;
-    };
+  graphvizCore = callPackage ourPkgs ./graphviz {
+    gdSupport = false;
   };
-in pkgs
+}

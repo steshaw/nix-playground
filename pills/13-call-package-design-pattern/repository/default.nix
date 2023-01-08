@@ -1,8 +1,14 @@
 { pkgs ? import <nixpkgs> { } }:
 let
   autotoolsDerivation = import ./autotools pkgs;
-  # callPackage : Set Function OverridesSet -> Set
-  cp = import ./call-package.nix;
+  # callPackage : Set Path OverridesSet -> Set
+  callPackage = set: pathToF: overrides:
+    let f = import pathToF; in f
+      (
+        builtins.intersectAttrs
+          (builtins.functionArgs f)
+          set // overrides
+      );
 in
 with pkgs;
 let
@@ -18,16 +24,14 @@ in
     inherit autotoolsDerivation;
   };
 
-  graphviz = cp.callPackage defaultGraphvizArgs
-    (
-      import ./graphviz
-    )
+  graphviz = callPackage defaultGraphvizArgs
+    ./graphviz
     {
       gdSupport = true;
     };
 
-  graphvizCore = cp.callPackage defaultGraphvizArgs
-    (import ./graphviz)
+  graphvizCore = callPackage defaultGraphvizArgs
+    ./graphviz
     {
       gdSupport = false;
     };

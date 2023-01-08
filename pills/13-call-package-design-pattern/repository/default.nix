@@ -19,7 +19,7 @@ let
     inherit pkg-config;
   };
 in
-{
+let pkgs = {
   hello = import ./hello {
     inherit autotoolsDerivation;
   };
@@ -35,4 +35,5 @@ in
     {
       gdSupport = false;
     };
-}
+  };
+in pkgs

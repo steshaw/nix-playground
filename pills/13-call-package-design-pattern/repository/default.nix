@@ -12,15 +12,16 @@ let
           (builtins.functionArgs f)
           set // overrides
       );
+  pkgs = {
+    hello = callPackage ourPkgs ./hello { };
+
+    graphviz = callPackage ourPkgs ./graphviz {
+      gdSupport = true;
+    };
+
+    graphvizCore = callPackage ourPkgs ./graphviz {
+      gdSupport = false;
+    };
+  };
 in
-{
-  hello = callPackage ourPkgs ./hello { };
-
-  graphviz = callPackage ourPkgs ./graphviz {
-    gdSupport = true;
-  };
-
-  graphvizCore = callPackage ourPkgs ./graphviz {
-    gdSupport = false;
-  };
-}
+pkgs

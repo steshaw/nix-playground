@@ -1,2 +1,7 @@
-echo Building the default package which is all our packages
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# Test both kinds of building: pre-flakes and flakes.
+nix-build
 nix build

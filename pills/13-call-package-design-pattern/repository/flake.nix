@@ -7,7 +7,7 @@
       let
         system-nixpkgs = nixpkgs.legacyPackages.${system};
         our-pkgs = (import ./default.nix) {
-          pkgs = system-nixpkgs;
+          nixpkgs = system-nixpkgs;
         };
         all = system-nixpkgs.linkFarm "all" our-pkgs;
       in

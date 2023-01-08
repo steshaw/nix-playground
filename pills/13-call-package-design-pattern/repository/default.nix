@@ -1,6 +1,6 @@
-{ pkgs ? import <nixpkgs> { } }:
+{ nixpkgs ? import <nixpkgs> { } }:
 let
-  autotoolsDerivation = import ./autotools pkgs;
+  autotoolsDerivation = import ./autotools nixpkgs;
   # callPackage : Set Path OverridesSet -> Set
   callPackage = set: pathToF: overrides:
     let f = import pathToF; in f
@@ -10,7 +10,7 @@ let
           set // overrides
       );
 in
-with pkgs;
+with nixpkgs;
 let
   defaultGraphvizArgs = {
     inherit autotoolsDerivation;

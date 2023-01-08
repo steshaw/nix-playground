@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+echo 'graph test { a -- b }' | ./result/graphiz/bin/dot -Tpng -o test.png
+~/.iterm2/imgcat test.png

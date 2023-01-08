@@ -1,4 +1,6 @@
-{pkgs ? import <nixpkgs> {} }:
+{pkgs ? import <nixpkgs> {},
+ gdSupport ? true
+ }:
 let
   autotoolsDerivation = import ./autotools.nix pkgs;
 in
@@ -9,9 +11,9 @@ with pkgs; autotoolsDerivation {
       "https://gitlab.com/api/v4/projects/4207231/packages/generic/graphviz-releases/2.49.3/graphviz-2.49.3.tar.gz";
     sha256 = "1gycwaq6lnz03pizfibipq1j15hb975xdb0qsaagkq4qvhyj16zp";
   };
-  buildInputs = [
+  buildInputs = if gdSupport then [
     pkg-config
-    gd
-    gd.dev
-  ];
+    (pkgs.lib.getLib gd)
+    (pkgs.lib.getDev gd)
+  ] else [];
 }

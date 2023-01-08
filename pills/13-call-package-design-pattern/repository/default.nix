@@ -1,9 +1,9 @@
 { nixpkgs ? import <nixpkgs> { } }:
 let
-  autotoolsDerivation = import ./autotools nixpkgs;
-  ourPkgs = nixpkgs // {
-    inherit autotoolsDerivation;
+  ourPkgs = nixpkgs // pkgs // {
+    autotoolsDerivation = import ./autotools nixpkgs;
   };
+
   # callPackage : Set Path OverridesSet -> Set
   callPackage = set: pathToF: overrides:
     let f = import pathToF; in f

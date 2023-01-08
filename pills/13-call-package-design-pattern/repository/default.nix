@@ -1,6 +1,8 @@
 { pkgs ? import <nixpkgs> { } }:
 let
   autotoolsDerivation = import ./autotools pkgs;
+  # callPackage : Set Function OverridesSet -> Set
+  cp = import ./call-package.nix;
 in
 with pkgs;
 let
@@ -15,10 +17,18 @@ in
   hello = import ./hello {
     inherit autotoolsDerivation;
   };
-  graphviz = import ./graphviz (defaultGraphvizArgs // {
-    gdSupport = true;
-  });
-  graphvizCore = import ./graphviz (defaultGraphvizArgs // {
-    gdSupport = false;
-  });
+
+  graphviz = cp.callPackage defaultGraphvizArgs
+    (
+      import ./graphviz
+    )
+    {
+      gdSupport = true;
+    };
+
+  graphvizCore = cp.callPackage defaultGraphvizArgs
+    (import ./graphviz)
+    {
+      gdSupport = false;
+    };
 }

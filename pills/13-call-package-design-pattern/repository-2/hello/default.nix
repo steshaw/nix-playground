@@ -1,4 +1,5 @@
 { autotoolsDerivation
+, ...
 }:
 autotoolsDerivation {
   name = "hello";

@@ -1,5 +1,5 @@
-# The "callPackage" design pattern
+# The ellipsis package calling trick
 
-The `callPackage` functions uses reflection to find the names of arguments
-to a function. It would be nicer to use implicits or something like record
-wildcards.
+Here `callPackage` avoids the use of `functionArgs` by passing the entire
+package collection (attrset) to each package function (derivation). These
+package functions must use the `...` to ignore the additional parameters.

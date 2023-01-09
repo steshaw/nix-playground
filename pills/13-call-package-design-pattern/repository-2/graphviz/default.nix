@@ -3,6 +3,7 @@
 , gdSupport ? true
 , gd
 , pkg-config
+, ...
 }:
 autotoolsDerivation {
   name = "graphviz";

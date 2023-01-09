@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+echo 'graph test { a -- b }' | ./result/graphviz/bin/dot -Tpng -o test1.png
+~/.iterm2/imgcat test1.png
+
+echo 'graph test { a -- b }' | ./result/graphvizCore/bin/dot -Tpng -o test2.png || true
+
+./result/hello/bin/hello

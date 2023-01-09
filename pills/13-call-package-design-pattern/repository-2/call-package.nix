@@ -4,7 +4,7 @@ let
       (builtins.functionArgs f)
       set // overrides
   );
-  add = {a ? 3, b}: a + b;
+  add = { a ? 3, b }: a + b;
   values = {
     a = 10;
     b = 32;
@@ -14,6 +14,6 @@ let
 in
 {
   inherit add values callPackage;
-  test1 = callPackage values add {};
+  test1 = callPackage values add { };
   test2 = callPackage values add { a = 0; };
 }

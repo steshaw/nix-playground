@@ -2,7 +2,7 @@ let
   makeOverridable = f: origArgs:
     f origArgs // {
       override = newArgs:
-        f (origArgs // newArgs);
+        makeOverridable f (origArgs // newArgs);
     };
 in
 {

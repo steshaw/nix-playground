@@ -1,9 +1,9 @@
 let
   # callPackage : PkgSet Path OverridesSet -> PkgSet
-  callPackageWithPkgSet = pkgSet: pathToF: overrides:
-    let f = import pathToF; in f
+  callPackageWithPkgSet = pkgSet: pathToMkPkg: overrides:
+    let mkPkg = import pathToMkPkg; in mkPkg
       ((builtins.intersectAttrs
-        (builtins.functionArgs f)
+        (builtins.functionArgs mkPkg)
         pkgSet) // overrides);
 
   makeOverridable = f: origArgs:

@@ -2,16 +2,11 @@
 let
   ourPkgs = nixpkgs // pkgs;
 
-  # callPackage : Set Path OverridesSet -> Set
-  callPackageWithPkgSet = pkgSet: pathToF: overrides:
-    let f = import pathToF; in f
-      ((builtins.intersectAttrs
-        (builtins.functionArgs f)
-        pkgSet) // overrides);
+  lib = import ./lib.nix;
 
-  callPackage = callPackageWithPkgSet ourPkgs;
+  callPackage = lib.callPackageWithPkgSet ourPkgs;
 
-  pkgs = {
+  pkgs = with lib; {
     autotoolsDerivation = import ./autotools nixpkgs;
 
     hello = callPackage ./hello { };

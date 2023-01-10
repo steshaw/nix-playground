@@ -11,7 +11,7 @@
     sha256 = "1gycwaq6lnz03pizfibipq1j15hb975xdb0qsaagkq4qvhyj16zp";
   }
 }:
-builtins.trace "gdSupport=${toString gdSupport} gd=${gd}" autotoolsDerivation {
+autotoolsDerivation {
   name = "graphviz";
   src = graphvizSrc;
   buildInputs =

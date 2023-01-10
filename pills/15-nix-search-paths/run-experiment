@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+mkdir -p profiles
+profile=./profiles/profile
+
+export NIX_PATH=mypkgs=../14-override-design-pattern/pkgs:nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixpkgs
+
+echo '====='
+nix-env -p $profile -f '<mypkgs>' --install graphviz
+$profile/bin/dot -V
+echo 'graph test { a -- b }' | $profile/bin/dot -Tpng -o test.png || echo 'Expected failure'
+
+echo
+echo '====='
+nix-env -p ./profile -f '<mypkgs>' --query --available --attr-path || true
+
+echo
+echo '====='
+nix-env -p $profile -f '<mypkgs>' --install --attr graphvizFullNext
+$profile/bin/dot -V
+echo 'graph test { a -- b }' | $profile/bin/dot -Tpng -o test.png
+~/.iterm2/imgcat test.png

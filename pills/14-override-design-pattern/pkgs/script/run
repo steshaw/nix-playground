@@ -2,10 +2,23 @@
 
 set -euo pipefail
 
-echo 'graph test { a -- b }' | ./result-flakes/graphviz/bin/dot -Tpng -o test1.png
+echo == graphviaFull ==
+./result-flakes/graphvizFull/bin/dot -V
+echo 'graph test { a -- b }' | ./result-flakes/graphvizFull/bin/dot -Tpng -o test1.png
 ~/.iterm2/imgcat test1.png
 
-echo 'graph test { a -- b }' | ./result-flakes/graphvizCore/bin/dot -Tpng -o test2.png || true
+echo == graphviaBare ==
+./result-flakes/graphvizBare/bin/dot -V
+echo 'graph test { a -- b }' | ./result-flakes/graphvizBare/bin/dot -Tpng -o test2.png || true
+
+echo == graphviaBareNext ==
+./result-flakes/graphvizBareNext/bin/dot -V
+echo 'graph test { a -- b }' | ./result-flakes/graphvizBareNext/bin/dot -Tpng -o test2.png || true
+
+echo == graphviaFullNext ==
+./result-flakes/graphvizFullNext/bin/dot -V
+echo 'graph test { a -- b }' | ./result-flakes/graphvizFullNext/bin/dot -Tpng -o test2.png
+~/.iterm2/imgcat test2.png
 
 ./result-flakes/hello/bin/hello
-./result-3/bin/hello
+./result-4/bin/hello

@@ -5,20 +5,22 @@ let
   };
 
   # callPackage : Set Path OverridesSet -> Set
-  callPackage = set: pathToF: overrides:
+  callPackageWithPkgSet = pkgSet: pathToF: overrides:
     let f = import pathToF; in f
       ((builtins.intersectAttrs
         (builtins.functionArgs f)
-        set) // overrides)
-  ;
-  pkgs = {
-    hello = callPackage ourPkgs ./hello { };
+        pkgSet) // overrides);
 
-    graphviz = callPackage ourPkgs ./graphviz {
+  callPackage = callPackageWithPkgSet ourPkgs;
+
+  pkgs = {
+    hello = callPackage ./hello { };
+
+    graphviz = callPackage ./graphviz {
       gdSupport = true;
     };
 
-    graphvizCore = callPackage ourPkgs ./graphviz {
+    graphvizCore = callPackage ./graphviz {
       gdSupport = false;
     };
   };

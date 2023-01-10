@@ -1,8 +1,6 @@
 { nixpkgs ? import <nixpkgs> { } }:
 let
-  ourPkgs = nixpkgs // pkgs // {
-    autotoolsDerivation = import ./autotools nixpkgs;
-  };
+  ourPkgs = nixpkgs // pkgs;
 
   # callPackage : Set Path OverridesSet -> Set
   callPackageWithPkgSet = pkgSet: pathToF: overrides:
@@ -14,6 +12,8 @@ let
   callPackage = callPackageWithPkgSet ourPkgs;
 
   pkgs = {
+    autotoolsDerivation = import ./autotools nixpkgs;
+
     hello = callPackage ./hello { };
 
     graphviz = callPackage ./graphviz {

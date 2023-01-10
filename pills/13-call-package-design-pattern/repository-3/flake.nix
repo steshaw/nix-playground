@@ -9,7 +9,9 @@
         our-pkgs = (import ./default.nix) {
           nixpkgs = system-nixpkgs;
         };
-        all = system-nixpkgs.linkFarm "all" our-pkgs;
+        our-drvs = with nixpkgs.lib;
+          filterAttrs (name: value: isDerivation value) our-pkgs;
+        all = system-nixpkgs.linkFarm "all" our-drvs;
       in
       {
         packages = our-pkgs // {

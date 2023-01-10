@@ -4,4 +4,4 @@ set -euo pipefail
 
 # Test both kinds of building: pre-flakes and flakes.
 nix-build
-nix build
+nix build --out-link result-flakes

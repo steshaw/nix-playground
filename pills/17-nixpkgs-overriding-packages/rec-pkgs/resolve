@@ -1,16 +1,15 @@
 #!/bin/sh
 
-echo pkgs
-nix-instantiate --eval --strict --json --attr pkgs | jq
+get_attrs() {
+  nix-instantiate --eval \
+      --expr 'builtins.attrNames (import ./default.nix)' --json |
+    jq -r '.[]'
+}
 
-echo
-echo pkgs-fix
-nix-instantiate --eval --strict --json --attr pkgs-fix | jq
+attrs=$(get_attrs)
 
-echo
-echo newpkgs
-nix-instantiate --eval --strict --json --attr newpkgs | jq
-
-echo
-echo newpkgs2
-nix-instantiate --eval --strict --json --attr newpkgs2 | jq
+for attr in $attrs; do
+  echo
+  echo "$attr:"
+  nix-instantiate --eval --strict --json --attr "$attr" | jq
+done

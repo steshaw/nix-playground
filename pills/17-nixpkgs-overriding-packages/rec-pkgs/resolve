@@ -1,4 +1,7 @@
+#!/bin/sh
+
 echo without fix
-nix-instantiate --eval --strict --json --arg useFix false | jq
+nix-instantiate --eval --strict --json --attr pkgs | jq
+
 echo with fix
-nix-instantiate --eval --strict --json --arg useFix true | jq
+nix-instantiate --eval --strict --json --attr pkgs-fix | jq

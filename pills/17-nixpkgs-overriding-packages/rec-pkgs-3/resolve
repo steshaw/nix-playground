@@ -1,0 +1,13 @@
+#!/bin/sh
+
+get_attrs() {
+  nix-instantiate --eval --attr 'list' --json | jq -r '.[]'
+}
+
+attrs=$(get_attrs)
+
+for attr in $attrs; do
+  echo
+  echo "$attr:"
+  nix-instantiate --eval --strict --json --attr "$attr" | jq
+done

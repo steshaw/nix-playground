@@ -3,5 +3,10 @@
 set -euo pipefail
 
 for file in *.nix; do
-  nix-instantiate ./$file;
+  if [[ $file == 'psmisc-fn-drv-2.nix' ]]; then
+    # Supply required argument.
+    nix-instantiate --arg foo true "$file"
+  else
+    nix-instantiate "$file"
+  fi
 done

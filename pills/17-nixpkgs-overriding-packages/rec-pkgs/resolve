@@ -1,9 +1,7 @@
 #!/bin/sh
 
 get_attrs() {
-  nix-instantiate --eval \
-      --expr 'builtins.attrNames (import ./default.nix)' --json |
-    jq -r '.[]'
+  nix-instantiate --eval --attr 'list' --json | jq -r '.[]'
 }
 
 attrs=$(get_attrs)

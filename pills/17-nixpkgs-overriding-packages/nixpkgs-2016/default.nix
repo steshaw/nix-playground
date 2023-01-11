@@ -1,1 +1,1 @@
-import (import ./nixpkgs-tarball.nix) {}
+import (import ./nixpkgs-tarball.nix)

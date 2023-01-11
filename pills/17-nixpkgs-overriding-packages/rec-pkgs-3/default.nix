@@ -18,9 +18,6 @@ let
 in let
   pkgs-app = pkgs (pkgs (pkgs pkgs));
   pkgs-fix = fix pkgs;
-#  newpkgs = let newpkgs = pkgs (newpkgs // overrides); in newpkgs;
-#  newpkgs2 = let newpkgs = pkgs (newpkgs // overrides); in newpkgs // overrides;
-
   all = {
     inherit pkgs-app pkgs-fix;
   };

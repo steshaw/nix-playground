@@ -1,8 +1,9 @@
 let
+
   fix = f: let r = builtins.trace "fix.f" (f r); in r;
 
   pkgs = self:
-    builtins.trace "pkgs" {
+    builtins.trace "pkgs self = hmm" {
       a = 3;
       b = 4;
       c = self.a + self.b;
@@ -15,13 +16,9 @@ let
     b = self.f + 2;
   };
 
-in let
+in
+{
   pkgs-app = pkgs (pkgs (pkgs pkgs));
   pkgs-fix = fix pkgs;
-  all = {
-    inherit pkgs-app pkgs-fix;
-  };
-in
-all // {
-  list = ["pkgs-app" "pkgs-fix"];
+  #hmm-app = overrides-mixin (pkgs pkgs);
 }

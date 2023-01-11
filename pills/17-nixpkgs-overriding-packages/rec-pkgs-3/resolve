@@ -1,12 +1,12 @@
-#!/bin/sh
+#!/usr/bin/env bash
+
+set -euo pipefail
 
 get_attrs() {
   nix-instantiate --eval --attr 'list' --json | jq -r '.[]'
 }
 
-attrs=$(get_attrs)
-
-for attr in $attrs; do
+for attr in pkgs-app pkgs-fix; do
   echo
   echo "$attr:"
   nix-instantiate --eval --strict --json --attr "$attr" | jq

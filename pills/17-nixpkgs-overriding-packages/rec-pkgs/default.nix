@@ -1,9 +1,7 @@
+{ useFix ? false }:
 let
-  pkgs = self: { a = 3; b = 4; c = self.a + self.b; };
-  fix = f: let r = f r; in r;
+  pkgs = self:
+    builtins.trace "pkgs" { a = 3; b = 4; c = self.a + self.b; };
+  fix = f: let r = builtins.trace "fix.f" (f r); in r;
 in
-{
-  resolved = pkgs (pkgs pkgs);
-
-  resolved_with_fix = fix pkgs;
-}
+  if useFix then fix pkgs else pkgs (pkgs pkgs)

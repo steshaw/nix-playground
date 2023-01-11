@@ -1,1 +1,4 @@
-nix-instantiate --eval --strict --json | jq
+echo without fix
+nix-instantiate --eval --strict --json --arg useFix false | jq
+echo with fix
+nix-instantiate --eval --strict --json --arg useFix true | jq

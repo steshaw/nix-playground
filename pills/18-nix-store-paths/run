@@ -53,3 +53,11 @@ nix-hash --type sha256 --truncate --base32 --flat \
 sha256sum myfile
 nix-instantiate --add-root fixed.drv ./fixed.nix
 nix show-derivation ./fixed.drv | jq
+h=$(nix-hash --type sha256 --flat ./myfile)
+echo "h=$h"
+fixed_output_hash=$(nix-hash --type sha256 --flat <(
+  echo -n "fixed:out:sha256:$h:"
+))
+nix-hash --type sha256 --truncate --base32 --flat <(
+  echo -n "output:out:sha256:$fixed_output_hash:/nix/store:bar"
+)

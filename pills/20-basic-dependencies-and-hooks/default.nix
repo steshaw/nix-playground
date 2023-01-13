@@ -11,18 +11,24 @@ let
     };
   };
 
-  middle-man = stdenv.mkDerivation {
+  middleMan = stdenv.mkDerivation {
     name = "middle-man";
-    propagatedBuildInputs = [ actualHello ];
+    myPropagatedPkgs = [ actualHello ];
     dontUnpack = true;
     installPhase = ''
       mkdir -p "$out"
+      mkdir -p $out/nix-support
+      cat > $out/nix-support/setup-hook <<END
+      for pkg in $myPropagatedPkgs; do
+        findInputs \$pkg 1 1 # guessing on the offsets
+      done
+      END
     '';
   };
 
   wrappedHello = stdenv.mkDerivation {
     name = "hello-wrapper";
-    buildInputs = [ middle-man which ];
+    buildInputs = [ middleMan which ];
 
     dontUnpack = true;
 
@@ -39,5 +45,5 @@ let
   };
 in
 {
-  inherit actualHello middle-man wrappedHello;
+  inherit actualHello middleMan wrappedHello;
 }

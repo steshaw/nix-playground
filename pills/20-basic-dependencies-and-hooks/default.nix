@@ -23,6 +23,7 @@ let
       #!${stdenv.shell}
       exec ${actualHello}/bin/hello
       END
+      chmod +x "$out/bin/hello"
     '';
   };
 in

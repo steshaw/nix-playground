@@ -13,7 +13,7 @@ let
 
   wrappedHello = stdenv.mkDerivation {
     name = "hello-wrapper";
-    buildInputs = [actualHello which ];
+    buildInputs = [ actualHello ];
 
     dontUnpack = true;
 
@@ -21,7 +21,7 @@ let
       mkdir -p "$out/bin"
       cat >"$out/bin/hello" <<END
       #!${stdenv.shell}
-      exec $(which hello)
+      exec ${actualHello}/bin/hello
       END
     '';
   };

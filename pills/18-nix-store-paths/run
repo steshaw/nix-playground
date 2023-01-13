@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-nix show-derivation $(nix-instantiate) | jq
+nix show-derivation "$(nix-instantiate --add-root drv.root)" | jq
 
 nix-hash --type sha256 myfile
 nix-store --dump myfile | tee myfile.dump | sha256sum
@@ -17,3 +17,7 @@ s="source:sha256:$hash:/nix/store:myfile"
 echo "s=[[$s]]"
 echo -n "$s" >myfile.source
 nix-hash --type sha256 --truncate --base32 --flat myfile.source
+
+# Emulate nix-prefetch hash.
+nix-prefetch-url file://<(echo hello)
+nix-hash --type sha256 --flat --base32 <(echo hello)

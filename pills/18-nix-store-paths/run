@@ -1,1 +1,5 @@
 nix show-derivation $(nix-instantiate) | jq
+
+nix-hash --type sha256 myfile
+nix-store --dump myfile | tee myfile.dump | sha256sum
+nix-store --dump myfile | tee myfile.dump | sha256sum --binary

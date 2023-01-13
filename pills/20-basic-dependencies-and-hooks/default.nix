@@ -15,7 +15,7 @@ let
     name = "hello-wrapper";
     buildInputs = [actualHello which ];
 
-    unpackPhase = "true"; # Do nothing
+    dontUnpack = true;
 
     installPhase = ''
       mkdir -p "$out/bin"

@@ -10,5 +10,18 @@ let
       sha256 = "0c7vijq8y68bpr7g6dh1gny0bff8qq81vnp4ch8pjzvg56wb3js1";
     };
   };
+
+  wrappedHello = stdenv.mkDerivation {
+    name = "hello-wrapper";
+    buildInputs = [actualHello which ];
+
+    unpackPhase = "true"; # Do nothing
+
+    installPhase = ''
+      mkdir -p "$out/bin"
+      echo "#!${stdenv.shell}" >> "$out/bin/hello"
+      echo "exec $(which hello)" >> "$out/bin/hello"
+    '';
+  };
 in
-actualHello
+wrappedHello

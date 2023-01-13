@@ -1,5 +1,19 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
 nix show-derivation $(nix-instantiate) | jq
 
 nix-hash --type sha256 myfile
 nix-store --dump myfile | tee myfile.dump | sha256sum
 nix-store --dump myfile | tee myfile.dump | sha256sum --binary
+
+# From Store::makeStorePath:
+#
+# string s = type + ":" + hash.to_string(Base16) + ":" + storeDir + ":" + name;
+#
+hash=$(nix-hash --type sha256 myfile)
+s="source:sha256:$hash:/nix/store:myfile"
+echo "s=[[$s]]"
+echo -n "$s" >myfile.source
+nix-hash --type sha256 --truncate --base32 --flat myfile.source

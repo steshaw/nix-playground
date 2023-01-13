@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+nix-build '<nixpkgs>' -A stdenv
+
+version=2.12.1
+tarball="hello-${version}.tar.gz"
+if [[ ! -r "${tarball}" ]]; then
+  curl -O http://ftp.gnu.org/gnu/hello/${tarball}
+fi
+
+nix-shell --pure --run ./run.in-shell

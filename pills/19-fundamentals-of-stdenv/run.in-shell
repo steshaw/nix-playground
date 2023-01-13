@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+pp() {
+  if hash tr; then
+    echo "$PATH" | tr ':' '\n'
+  else
+    echo "PATH=[[$PATH]]"
+  fi
+}
+pp
+
+rm -rf ./hello-2.12.1/
+unset PATH
+echo
+
+NIX_LOG_FD=1
+
+src=./hello-2.12.1.tar.gz
+out=$PWD/out
+buildFlags=''
+installFlags=''
+
+echo Source setup
+source ./result/setup
+pp
+
+unpackPhase
+cd hello-2.12.1
+configurePhase
+buildPhase
+installPhase
+$out/bin/hello

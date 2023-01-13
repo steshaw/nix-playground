@@ -22,6 +22,12 @@ let
       for pkg in $myPropagatedPkgs; do
         findInputs \$pkg 1 1 # guessing on the offsets
       done
+      anEnvHook() {
+        local pkg=$1
+        echo "XXX: I depend on \"$pkg\""
+      }
+      echo hostOffset=$hostOffset
+      addEnvHooks "$hostOffset" anEnvHook
       END
     '';
   };

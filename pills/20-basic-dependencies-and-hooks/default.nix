@@ -11,13 +11,24 @@ let
     };
   };
 
+  middle-man = stdenv.mkDerivation {
+    name = "middle-man";
+    propagatedBuildInputs = [ actualHello ];
+    dontUnpack = true;
+    installPhase = ''
+      mkdir -p "$out"
+    '';
+  };
+
   wrappedHello = stdenv.mkDerivation {
     name = "hello-wrapper";
-    buildInputs = [ actualHello ];
+    buildInputs = [ middle-man which ];
 
     dontUnpack = true;
 
     installPhase = ''
+      which which # don't really need which
+      which hello # ensure propogated dependency is on PATH
       mkdir -p "$out/bin"
       cat >"$out/bin/hello" <<END
       #!${stdenv.shell}

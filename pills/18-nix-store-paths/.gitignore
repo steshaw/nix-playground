@@ -1,2 +1,4 @@
 /myfile.dump
-/drv.root
+*.str
+*.drv
+/drv

@@ -2,7 +2,11 @@
 
 set -euo pipefail
 
-nix show-derivation "$(nix-instantiate --add-root drv.root)" | jq
+mkDrv() {
+  nix show-derivation "$(nix-instantiate --add-root drv)" | jq
+}
+
+mkDrv
 
 nix-hash --type sha256 myfile
 nix-store --dump myfile | tee myfile.dump | sha256sum
@@ -15,9 +19,30 @@ nix-store --dump myfile | tee myfile.dump | sha256sum --binary
 hash=$(nix-hash --type sha256 myfile)
 s="source:sha256:$hash:/nix/store:myfile"
 echo "s=[[$s]]"
-echo -n "$s" >myfile.source
-nix-hash --type sha256 --truncate --base32 --flat myfile.source
+echo -n "$s" >myfile.str
+nix-hash --type sha256 --truncate --base32 --flat myfile.str
 
 # Emulate nix-prefetch hash.
 nix-prefetch-url file://<(echo hello)
 nix-hash --type sha256 --flat --base32 <(echo hello)
+
+# Output paths
+drv_path=$(readlink -f drv)
+output_path=$(mkDrv | jq -r ".\"${drv_path}\".outputs.out.path")
+
+cp -f /nix/store/y4h73bmrc9ii5bxg6i7ck6hsf5gqv8ck-foo.drv myout-0.drv
+sed -i 's,/nix/store/hs0yi5n5nw6micqhy8l1igkbhqdkzqa1-foo,,g' myout-0.drv
+
+cp drv myout-1.drv
+chmod +w myout-1.drv
+sed -i -e "s,$output_path,,g" myout-1.drv
+
+sed -e "s,$output_path,,g" drv > myout-2.drv
+
+sha256sum myout-0.drv myout-1.drv myout-2.drv
+
+out_hash=$(nix-hash --type sha256 --flat myout-0.drv)
+echo -n "output:out:sha256:$out_hash:/nix/store:foo" >myout.str
+nix-hash --type sha256 --truncate --base32 --flat myout.str
+nix-hash --type sha256 --truncate --base32 --flat \
+  <(echo -n "output:out:sha256:$out_hash:/nix/store:foo")

@@ -23,7 +23,7 @@ buildFlags=''
 installFlags=''
 
 echo Source setup
-source ./result/setup
+source $stdenv/setup
 pp
 
 genericBuild

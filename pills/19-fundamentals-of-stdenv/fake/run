@@ -2,8 +2,6 @@
 
 set -euo pipefail
 
-nix-build '<nixpkgs>' -A stdenv
-
 version=2.12.1
 tarball="hello-${version}.tar.gz"
 if [[ ! -r "${tarball}" ]]; then

@@ -15,7 +15,7 @@ rm -rf ./hello-2.12.1/
 unset PATH
 echo
 
-NIX_LOG_FD=1
+NIX_LOG_FD=2
 
 src=./hello-2.12.1.tar.gz
 out=$PWD/out
@@ -26,9 +26,5 @@ echo Source setup
 source ./result/setup
 pp
 
-unpackPhase
-cd hello-2.12.1
-configurePhase
-buildPhase
-installPhase
+genericBuild
 $out/bin/hello

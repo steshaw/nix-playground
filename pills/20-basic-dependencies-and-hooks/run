@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+echo Building...
+nix-build
+
+echo "middle-man's propagated build inputs"
+cat ./result-2/nix-support/propagated-build-inputs

@@ -38,4 +38,6 @@ let
     '';
   };
 in
-wrappedHello
+{
+  inherit actualHello middle-man wrappedHello;
+}

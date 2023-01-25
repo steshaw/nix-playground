@@ -11,11 +11,13 @@ app = Flask(__name__)
 IMAGE_URL = "https://farm1.staticflickr.com/422/32287743652_9f69a6e9d9_b.jpg"
 IMAGE_SIZE = (300, 300)
 
+@app.route('/hi')
+def hi():
+    return "Hi!"
 
 @app.route('/')
 def hello():
     return "Hello World!"
-
 
 @app.route('/image')
 def image():

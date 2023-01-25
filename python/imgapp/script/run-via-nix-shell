@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+exec nix-shell -p python3 -p python3Packages.flask -p python3Packages.pillow -p python3Packages.requests --run 'python ./__init__.py'

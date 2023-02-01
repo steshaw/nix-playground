@@ -7,6 +7,9 @@
     flake-utils.lib.eachDefaultSystem (system:
       let pkgs = nixpkgs.legacyPackages.${system};
       in {
+        devShells.legacy-shell = import ./shell.nix {
+          inherit pkgs;
+        };
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
             go_1_18

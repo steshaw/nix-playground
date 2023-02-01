@@ -1,4 +1,4 @@
-{ pkgs ? import ./nix {} }:
+{ pkgs ? import ./nix { } }:
 pkgs.mkShell {
   buildInputs = with pkgs; [
     go_1_18

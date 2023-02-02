@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+venv=.cache/python/venv
+python -m venv .cache/python/venv
+# shellcheck disable=SC1091
+source "$venv/bin/activate"
+pip install -e .
+exec ./app.py

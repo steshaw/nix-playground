@@ -1,2 +1,3 @@
 /.cache/
+/.direnv/
 /flask_example.egg-info/

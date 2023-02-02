@@ -2,7 +2,6 @@ let
   overlay = self: super: {
     flask-example = self.poetry2nix.mkPoetryApplication {
       projectDir = ./.;
-      python = self.python3; # XXX: Why?
     };
   };
   hostPkgs = import <nixpkgs> {

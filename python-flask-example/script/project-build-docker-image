@@ -3,4 +3,6 @@
 set -euo pipefail
 
 nix-build ./docker.nix -A docker
-./result | docker load
+mkdir -p .cache
+./result | docker load | tee .cache/docker.load.out
+sed -e 's/Loaded image: //' <.cache/docker.load.out >.cache/docker-image.txt

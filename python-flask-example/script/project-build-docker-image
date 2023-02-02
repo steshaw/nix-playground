@@ -3,3 +3,4 @@
 set -euo pipefail
 
 nix-build ./docker.nix -A docker
+./result | docker load

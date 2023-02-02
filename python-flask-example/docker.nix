@@ -5,18 +5,19 @@ let
     };
   };
   hostPkgs = import <nixpkgs> {
-    overlays = [overlay];
+    overlays = [ overlay ];
   };
   linuxPkgs = import <nixpkgs> {
-    overlays = [overlay];
+    overlays = [ overlay ];
     system = "x86_64-linux";
   };
-in {
+in
+{
   inherit (hostPkgs) flask-example;
 
   docker = hostPkgs.dockerTools.streamLayeredImage {
     name = "flask-example";
     contents = [ linuxPkgs.flask-example ];
-    config.Cmd = ["flask-example"];
+    config.Cmd = [ "flask-example" ];
   };
 }

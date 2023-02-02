@@ -1,4 +1,4 @@
-{ pkgs ? import ./nix {} }:
+{ pkgs ? import ./nix { } }:
 pkgs.mkShell {
   buildInputs = [
     pkgs.python3

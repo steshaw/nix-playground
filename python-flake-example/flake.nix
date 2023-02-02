@@ -1,3 +1,5 @@
+# Discovered here:
+# https://mudrii.medium.com/building-reproducible-development-environment-b1d4fb51a302
 {
   description = "A flake using poetry2nix";
   nixConfig.bash-prompt = "\[nix-develop\]$ ";

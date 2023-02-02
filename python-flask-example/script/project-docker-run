@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+exec docker run \
+    --publish 8080:8080 --rm -it \
+    flask-example:22a0s0w6kjwy528n8d6bwsji94fip6ab

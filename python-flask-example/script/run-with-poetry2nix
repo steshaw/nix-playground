@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+nix-build poetry2nix-default.nix
+exec ./result/bin/flask-example
